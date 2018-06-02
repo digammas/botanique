@@ -5,11 +5,10 @@ public class Jardin {
 
     public static void main(String[] args) {
         System.out.println("Bonjour Jardin!");
-        int taille = 30; // Taille de plante
-        System.out.print("Taille initiale de plante: ");
-        System.out.println(taille);
-        System.out.print("Taille après l'arrosage: ");
-        taille = taille + 1;
-        System.out.println(taille);
+        int taille = 30; // Taille de plante en CM
+        System.out.println("Taille initiale de plante: " + taille + " cm.");
+        // Arroser la plante
+        taille++;
+        System.out.println("Taille après l'arrosage: " + taille + " cm.");
     }
 }
