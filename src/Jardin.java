@@ -7,10 +7,8 @@ public class Jardin {
 
     public static void main(String[] args) {
         System.out.println("Bonjour Jardin!");
-        double[] tailles = new double[3]; // Tailles des plantes en CM
-        tailles[0] = 30;
-        tailles[1] = 20;
-        tailles[2] = 45;
+        // Tailles des plantes en CM
+        double[] tailles = new double[] {30, 20, 45};
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Comment s'appelle-t-elle votre bouquet?");
