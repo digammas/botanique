@@ -29,8 +29,7 @@ public class Jardin {
         System.out.println("Quelle unité voulez-vous utiliser pour l'affichage?");
         String unite = scanner.next();
 
-        for (int i = 0; i < tailles.length; i++) {
-            double taille = tailles[i];
+        for (double taille : tailles) {
             switch (unite.toLowerCase()) {
             case "cm":
                 System.out.println("Taille après l'arrosage: " + taille + " cm.");
