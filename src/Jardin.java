@@ -7,11 +7,13 @@ public class Jardin {
 
     public static void main(String[] args) {
         System.out.println("Bonjour Jardin!");
-        double taille = 30; // Taille de plante en CM
-        System.out.println("Taille initiale de plante: " + taille + " cm.");
+        double[] tailles = new double[3]; // Tailles des plantes en CM
+        tailles[0] = 30;
+        tailles[1] = 20;
+        tailles[2] = 45;
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Comment s'appelle-t-elle votre plante?");
+        System.out.println("Comment s'appelle-t-elle votre bouquet?");
         String nom = scanner.nextLine();
 
         // Arroser la plante
@@ -21,20 +23,27 @@ public class Jardin {
             System.out.println("Désolé, je n'ai pas compris. Veuillez renseigner à un chiffre entier.");
         }
         int n = scanner.nextInt();
-        taille += n * 0.25;
+
+        for (int i = 0; i < tailles.length; i++) {
+            tailles[i] += n * 0.25;
+        }
 
         System.out.println("Quelle unité voulez-vous utiliser pour l'affichage?");
         String unite = scanner.next();
-        switch (unite.toLowerCase()) {
-        case "cm":
-            System.out.println("Taille après l'arrosage: " + taille + " cm.");
-            break;
-        case "pouce":
-            double tailleEnPouce = taille * 0.393701;
-            System.out.println("Taille après l'arrosage: " + tailleEnPouce + " pouce.");
-            break;
-        default:
-            System.out.println("Désolé, je ne connais pas " + unite + " comme unité!");
+
+        for (int i = 0; i < tailles.length; i++) {
+            double taille = tailles[i];
+            switch (unite.toLowerCase()) {
+            case "cm":
+                System.out.println("Taille après l'arrosage: " + taille + " cm.");
+                break;
+            case "pouce":
+                double tailleEnPouce = taille * 0.393701;
+                System.out.println("Taille après l'arrosage: " + tailleEnPouce + " pouce.");
+                break;
+            default:
+                System.out.println("Désolé, je ne connais pas " + unite + " comme unité!");
+            }
         }
         System.out.println(nom + " vous remercie de l'avoir arrosé.");
 
