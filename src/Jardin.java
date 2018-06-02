@@ -7,6 +7,11 @@ public class Jardin {
 
     private static double[] tailles = new double[] {30, 20, 45};
 
+    /**
+     * Le rapport CM/pouce.
+     */
+    private static final double CM_A_POUCE = 0.393701;
+
     public static void main(String[] args) {
         System.out.println("Bonjour Jardin!");
 
@@ -59,6 +64,6 @@ public class Jardin {
     }
 
     private static double convertirEnPouce(double taille) {
-        return taille * 0.393701;
+        return taille * CM_A_POUCE;
     }
 }
