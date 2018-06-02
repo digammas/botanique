@@ -51,11 +51,14 @@ public class Jardin {
             System.out.println("Taille après l'arrosage: " + taille + " cm.");
             break;
         case "pouce":
-            double tailleEnPouce = taille * 0.393701;
-            System.out.println("Taille après l'arrosage: " + tailleEnPouce + " pouce.");
+            System.out.println("Taille après l'arrosage: " + convertirEnPouce(taille) + " pouce.");
             break;
         default:
             System.out.println("Désolé, je ne connais pas " + unite + " comme unité!");
         }
+    }
+
+    private static double convertirEnPouce(double taille) {
+        return taille * 0.393701;
     }
 }
