@@ -24,15 +24,14 @@ public class Jardin {
         taille += n * 0.25;
 
         System.out.println("Quelle unité voulez-vous utiliser pour l'affichage?");
-        System.out.println("Renseigner 1 pour CM et 2 pour pouce.");
-        int unite = scanner.nextInt();
-        if (unite == 1) {
+        String unite = scanner.next();
+        if (unite.toLowerCase().equals("cm")) {
             System.out.println("Taille après l'arrosage: " + taille + " cm.");
-        } else if (unite == 2) {
+        } else if (unite.toLowerCase().equals("pouce")) {
             double tailleEnPouce = taille * 0.393701;
             System.out.println("Taille après l'arrosage: " + tailleEnPouce + " pouce.");
         } else {
-            System.out.println("Désolé, je n'ai pas compris votre choix.");
+            System.out.println("Désolé, je ne connais pas " + unite + " comme unité!");
         }
         System.out.println(nom + " vous remercie de l'avoir arrosé.");
 
