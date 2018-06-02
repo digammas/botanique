@@ -30,20 +30,24 @@ public class Jardin {
         String unite = scanner.next();
 
         for (double taille : tailles) {
-            switch (unite.toLowerCase()) {
-            case "cm":
-                System.out.println("Taille après l'arrosage: " + taille + " cm.");
-                break;
-            case "pouce":
-                double tailleEnPouce = taille * 0.393701;
-                System.out.println("Taille après l'arrosage: " + tailleEnPouce + " pouce.");
-                break;
-            default:
-                System.out.println("Désolé, je ne connais pas " + unite + " comme unité!");
-            }
+            afficher(taille, unite);
         }
         System.out.println(nom + " vous remercie de l'avoir arrosé.");
 
         scanner.close();
+    }
+
+    private static void afficher(double taille, String unite) {
+        switch (unite.toLowerCase()) {
+        case "cm":
+            System.out.println("Taille après l'arrosage: " + taille + " cm.");
+            break;
+        case "pouce":
+            double tailleEnPouce = taille * 0.393701;
+            System.out.println("Taille après l'arrosage: " + tailleEnPouce + " pouce.");
+            break;
+        default:
+            System.out.println("Désolé, je ne connais pas " + unite + " comme unité!");
+        }
     }
 }
