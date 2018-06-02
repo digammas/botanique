@@ -21,6 +21,8 @@ public class Jardin {
             taille += n * 0.25;
             System.out.println("Taille après l'arrosage: " + taille + " cm.");
             System.out.println(nom + " vous remercie de l'avoir arrosé.");
+        } else {
+            System.out.println("Désolé, je n'ai pas compris. Je m'attendais à un chiffre entier.");
         }
 
         scanner.close();
