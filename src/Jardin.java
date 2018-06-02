@@ -22,9 +22,7 @@ public class Jardin {
         }
         int n = scanner.nextInt();
 
-        for (int i = 0; i < tailles.length; i++) {
-            tailles[i] += n * 0.25;
-        }
+        arroser(n);
 
         System.out.println("Quelle unité voulez-vous utiliser pour l'affichage?");
         String unite = scanner.next();
@@ -33,6 +31,12 @@ public class Jardin {
         System.out.println(nom + " vous remercie de l'avoir arrosé.");
 
         scanner.close();
+    }
+
+    private static void arroser(int n) {
+        for (int i = 0; i < tailles.length; i++) {
+            tailles[i] += n * 0.25;
+        }
     }
 
     private static void afficher(String unite) {
