@@ -5,10 +5,10 @@ import java.util.Scanner;
  */
 public class Jardin {
 
+    private static double[] tailles = new double[] {30, 20, 45};
+
     public static void main(String[] args) {
         System.out.println("Bonjour Jardin!");
-        // Tailles des plantes en CM
-        double[] tailles = new double[] {30, 20, 45};
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Comment s'appelle-t-elle votre bouquet?");
@@ -29,12 +29,16 @@ public class Jardin {
         System.out.println("Quelle unité voulez-vous utiliser pour l'affichage?");
         String unite = scanner.next();
 
-        for (double taille : tailles) {
-            afficher(taille, unite);
-        }
+        afficher(unite);
         System.out.println(nom + " vous remercie de l'avoir arrosé.");
 
         scanner.close();
+    }
+
+    private static void afficher(String unite) {
+        for (double taille : tailles) {
+            afficher(taille, unite);
+        }
     }
 
     private static void afficher(double taille, String unite) {
