@@ -20,15 +20,23 @@ public class LigneCommande {
         Scanner scanner = new Scanner(System.in);
 
         Jardin monJardin = new Jardin();
-        // Arroser la plante
-        System.out.println("Combien de fois voulez-vous arroser la plante?");
-        while (!scanner.hasNextInt()) {
-            scanner.nextLine();
-            System.out.println("Désolé, je n'ai pas compris. Veuillez renseigner à un chiffre entier.");
-        }
-        int n = scanner.nextInt();
 
-        monJardin.arroser(n);
+        String reponse;
+        do {
+            // Arroser la plante
+            System.out.println("Combien de fois voulez-vous arroser les plantes?");
+            while (!scanner.hasNextInt()) {
+                scanner.nextLine();
+                System.out.println("Désolé, je n'ai pas compris. Veuillez renseigner à un chiffre entier.");
+            }
+            int n = scanner.nextInt();
+            scanner.nextLine();
+
+            monJardin.arroser(n);
+
+            System.out.println("Voulez-vous arrêter d'arroser les plantes?");
+            reponse = scanner.nextLine();
+        } while (!reponse.toLowerCase().equals("oui"));
 
         System.out.println("Vos plantes vous remercient de les avoir arrosé.");
 
