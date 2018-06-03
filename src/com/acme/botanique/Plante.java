@@ -29,12 +29,12 @@ public abstract class Plante {
 
     @Override
     public String toString() {
-        String rep = "";
+        StringBuilder rep = new StringBuilder();
         int nbFeuille = (int) taille / 10;
         for (int i = 0; i < nbFeuille; i++) {
-            rep += "<-";
+            rep.append("<-");
         }
-        return rep;
+        return rep.toString();
     }
 
     public abstract String lireNom();

@@ -44,10 +44,10 @@ public abstract class PlanteFleurie extends Plante {
 
     @Override
     public String toString() {
-        String rep = super.toString();
+        StringBuilder rep = new StringBuilder(super.toString());
         for (Fleur fleur : fleurs) {
-            rep += fleur.toString();
+            rep.append(fleur.toString());
         }
-        return rep;
+        return rep.toString();
     }
 }

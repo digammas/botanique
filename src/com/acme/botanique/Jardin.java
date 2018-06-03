@@ -1,5 +1,6 @@
 package com.acme.botanique;
 
+import java.util.Formatter;
 import java.util.Scanner;
 
 /**
@@ -34,11 +35,11 @@ public class Jardin {
 
     @Override
     public String toString() {
-        String rep = "";
+        Formatter rep = new Formatter();
         for (Plante plante : plantes) {
-            rep += plante.lireNom() + ":\t" + plante.toString() + "\n";
+            rep.format("%s:\t%s\n", plante.lireNom(), plante.toString());
         }
-        return rep;
+        return rep.toString();
     }
 
     /**
