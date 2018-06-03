@@ -22,6 +22,11 @@ public class Basilic extends Plante {
     }
 
     @Override
+    public void arroser(int n) {
+        taille += n * 0.2;
+    }
+
+    @Override
     public String lireNom() {
         return "Basilic";
     }

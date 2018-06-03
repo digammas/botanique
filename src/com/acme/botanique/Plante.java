@@ -9,7 +9,7 @@ package com.acme.botanique;
  */
 public abstract class Plante {
 
-    private double taille;
+    protected double taille;
 
     public Plante() {
         this(30);
