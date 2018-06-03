@@ -12,7 +12,7 @@ public class Jardin {
     /**
      * Toutes les plantes dans le jardin.
      */
-    private Plante[] plantes = new Plante[] { new Plante(), new Geranium(), new Basilic() };
+    private Plante[] plantes = new Plante[] { new Basilic(30), new Geranium(), new Basilic() };
 
     /**
      * L'enseble des plantes du jardin.

@@ -12,6 +12,15 @@ public class Basilic extends Plante {
         super(45);
     }
 
+    /**
+     * Constructeur avec un paramètre.
+     *
+     * @param taille    la taille initiale de la plante
+     */
+    public Basilic(double taille) {
+        super(taille);
+    }
+
     @Override
     public String lireNom() {
         return "Basilic";

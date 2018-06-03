@@ -7,7 +7,7 @@ package com.acme.botanique;
  *
  * @see "https://fr.wikipedia.org/wiki/Plante"
  */
-public class Plante {
+public abstract class Plante {
 
     private double taille;
 
@@ -27,7 +27,5 @@ public class Plante {
         taille += n * 0.25;
     }
 
-    public String lireNom() {
-        return "Plante inconnue";
-    }
+    public abstract String lireNom();
 }
