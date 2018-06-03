@@ -17,6 +17,10 @@ public class Jardin {
 
         Scanner scanner = new Scanner(System.in);
 
+        plantes[0].taille = 30;
+        plantes[1].taille = 20;
+        plantes[2].taille = 45;
+
         // Arroser la plante
         System.out.println("Combien de fois voulez-vous arroser la plante?");
         while (!scanner.hasNextInt()) {
@@ -37,8 +41,8 @@ public class Jardin {
     }
 
     private static void arroser(int n) {
-        for (int i = 0; i < plantes.length; i++) {
-            plantes[i].taille += n * 0.25;
+        for (Plante plante : plantes) {
+            plante.taille += n * 0.25;
         }
     }
 
