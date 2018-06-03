@@ -24,8 +24,10 @@ public abstract class Plante {
     }
 
     public void arroser(int n) {
-        taille += n * 0.25;
+        taille += n * lirePas();
     }
 
     public abstract String lireNom();
+
+    protected abstract double lirePas();
 }

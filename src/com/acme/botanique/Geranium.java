@@ -13,12 +13,12 @@ public class Geranium extends Plante {
     }
 
     @Override
-    public void arroser(int n) {
-        taille += n * 0.1;
+    public String lireNom() {
+        return "Géranium";
     }
 
     @Override
-    public String lireNom() {
-        return "Géranium";
+    protected double lirePas() {
+        return 0.1;
     }
 }
