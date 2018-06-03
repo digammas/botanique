@@ -5,7 +5,7 @@ import java.util.Scanner;
  */
 public class Jardin {
 
-    private static Plante[] plantes = new Plante[] {new Plante(30), new Plante(20), new Plante(45)};
+    private static Plante[] plantes = new Plante[] {new Plante(), new Plante(20), new Plante(45)};
 
     /**
      * Le rapport CM/pouce.

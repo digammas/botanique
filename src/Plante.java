@@ -9,7 +9,11 @@ public class Plante {
 
     double taille;
 
-    Plante(double t) {
-        taille = t;
+    Plante() {
+        this(30);
+    }
+
+    Plante(double taille) {
+        this.taille = taille;
     }
 }
