@@ -5,6 +5,8 @@ package com.acme.botanique;
  */
 public abstract class PlanteFleurie extends Plante {
 
+    private Fleur bouton = new Fleur();
+
     /**
      * Constructeur sans argument.
      */
@@ -21,4 +23,9 @@ public abstract class PlanteFleurie extends Plante {
         super(taille);
     }
 
+    @Override
+    public void arroser(int n) {
+        super.arroser(n);
+        bouton.arroser(n);
+    }
 }
