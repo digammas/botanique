@@ -3,7 +3,7 @@ package com.acme.botanique;
 /**
  * Une plante de Géranium.
  */
-public class Geranium extends Plante {
+public class Geranium extends PlanteFleurie {
 
     /**
      * Constructeur sans argument.
