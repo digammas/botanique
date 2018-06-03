@@ -21,4 +21,13 @@ public class Fleur {
             nombrePetales++;
         }
     }
+
+    /**
+     * Si la fleur est ouverte.
+     *
+     * @return <code>true</code> si la fleur est ouverte, <code>false</code> si elle est encore bouton.
+     */
+    public boolean estOuverte() {
+        return nombrePetales >= 5;
+    }
 }

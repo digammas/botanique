@@ -36,7 +36,9 @@ public abstract class PlanteFleurie extends Plante {
     public void arroser(int n) {
         super.arroser(n);
         bouton.arroser(n);
-        bouton = new Fleur();
-        fleurs.add(bouton);
+        if (bouton.estOuverte()) {
+            bouton = new Fleur();
+            fleurs.add(bouton);
+        }
     }
 }
