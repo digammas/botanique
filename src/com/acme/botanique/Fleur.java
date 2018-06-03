@@ -30,4 +30,9 @@ public class Fleur {
     public boolean estOuverte() {
         return nombrePetales >= 5;
     }
+
+    @Override
+    public String toString() {
+        return estOuverte() ? "(@" : "(*";
+    }
 }

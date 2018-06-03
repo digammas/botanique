@@ -27,6 +27,16 @@ public abstract class Plante {
         taille += n * lirePas();
     }
 
+    @Override
+    public String toString() {
+        String rep = "";
+        int nbFeuille = (int) taille / 10;
+        for (int i = 0; i < nbFeuille; i++) {
+            rep += "<-";
+        }
+        return rep;
+    }
+
     public abstract String lireNom();
 
     protected abstract double lirePas();

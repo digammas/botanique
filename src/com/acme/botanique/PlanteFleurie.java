@@ -41,4 +41,13 @@ public abstract class PlanteFleurie extends Plante {
             fleurs.add(bouton);
         }
     }
+
+    @Override
+    public String toString() {
+        String rep = super.toString();
+        for (Fleur fleur : fleurs) {
+            rep += fleur.toString();
+        }
+        return rep;
+    }
 }

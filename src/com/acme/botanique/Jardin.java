@@ -34,7 +34,11 @@ public class Jardin {
 
     @Override
     public String toString() {
-        return plantes.length + " plantes.";
+        String rep = "";
+        for (Plante plante : plantes) {
+            rep += plante.lireNom() + ":\t" + plante.toString() + "\n";
+        }
+        return rep;
     }
 
     /**
