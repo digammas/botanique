@@ -1,7 +1,5 @@
 package com.acme.botanique;
 
-import com.acme.outils.Mesure;
-
 import java.util.Scanner;
 
 /**
@@ -34,16 +32,9 @@ public class Jardin {
         }
     }
 
-    /**
-     * Afficher toutes les plantes.
-     *
-     * @param unite     unité utilisée pour l'affichage de taille
-     */
-    public void afficher(String unite) {
-        for (Plante plante : plantes) {
-            System.out.println(plante.lireNom());
-            afficher(plante.lireTaille(), unite);
-        }
+    @Override
+    public String toString() {
+        return plantes.length + " plantes.";
     }
 
     /**
@@ -67,31 +58,11 @@ public class Jardin {
 
         monJardin.arroser(n);
 
-        System.out.println("Quelle unité voulez-vous utiliser pour l'affichage?");
-        String unite = scanner.next();
-
-        monJardin.afficher(unite);
         System.out.println("Vos plantes vous remercient de les avoir arrosé.");
 
-        scanner.close();
-    }
+        System.out.println("Une représentation de mon jardin:");
+        System.out.println(monJardin);
 
-    /**
-     * Méthode utilitaire pour afficher la taille après l'arrosage dans une unité donnée.
-     *
-     * @param taille        la taille
-     * @param unite         l'unité
-     */
-    private static void afficher(double taille, String unite) {
-        switch (unite.toLowerCase()) {
-        case "cm":
-            System.out.println("Taille après l'arrosage: " + taille + " cm.");
-            break;
-        case "pouce":
-            System.out.println("Taille après l'arrosage: " + Mesure.convertir(taille, Mesure.CM_A_POUCE) + " pouce.");
-            break;
-        default:
-            System.out.println("Désolé, je ne connais pas " + unite + " comme unité!");
-        }
+        scanner.close();
     }
 }
