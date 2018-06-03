@@ -11,4 +11,9 @@ public class Geranium extends Plante {
     public Geranium() {
         super(20);
     }
+
+    @Override
+    public String lireNom() {
+        return "Géranium";
+    }
 }

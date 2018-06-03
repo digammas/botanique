@@ -11,4 +11,9 @@ public class Basilic extends Plante {
     public Basilic() {
         super(45);
     }
+
+    @Override
+    public String lireNom() {
+        return "Basilic";
+    }
 }
