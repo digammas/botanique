@@ -1,5 +1,7 @@
 package com.acme.botanique;
 
+import com.acme.outils.Mesure;
+
 import java.util.Scanner;
 
 /**
@@ -8,11 +10,6 @@ import java.util.Scanner;
 public class Jardin {
 
     private static Plante[] plantes = new Plante[] {new Plante(), new Plante(20), new Plante(45)};
-
-    /**
-     * Le rapport CM/pouce.
-     */
-    private static final double CM_A_POUCE = 0.393701;
 
     public static void main(String[] args) {
         System.out.println("Bonjour Jardin!");
@@ -56,14 +53,10 @@ public class Jardin {
             System.out.println("Taille après l'arrosage: " + taille + " cm.");
             break;
         case "pouce":
-            System.out.println("Taille après l'arrosage: " + convertirEnPouce(taille) + " pouce.");
+            System.out.println("Taille après l'arrosage: " + Mesure.convertir(taille, Mesure.CM_A_POUCE) + " pouce.");
             break;
         default:
             System.out.println("Désolé, je ne connais pas " + unite + " comme unité!");
         }
-    }
-
-    private static double convertirEnPouce(double taille) {
-        return taille * CM_A_POUCE;
     }
 }
