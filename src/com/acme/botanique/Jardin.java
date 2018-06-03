@@ -40,13 +40,13 @@ public class Jardin {
 
     private static void arroser(int n) {
         for (Plante plante : plantes) {
-            plante.taille += n * 0.25;
+            plante.arroser(n);
         }
     }
 
     private static void afficher(String unite) {
         for (Plante plante : plantes) {
-            afficher(plante.taille, unite);
+            afficher(plante.lireTaille(), unite);
         }
     }
 

@@ -9,7 +9,7 @@ package com.acme.botanique;
  */
 public class Plante {
 
-    double taille;
+    private double taille;
 
     Plante() {
         this(30);
@@ -17,5 +17,13 @@ public class Plante {
 
     Plante(double taille) {
         this.taille = taille;
+    }
+
+    double lireTaille() {
+        return taille;
+    }
+
+    void arroser(int n) {
+        taille += n * 0.25;
     }
 }
