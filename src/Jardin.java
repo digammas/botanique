@@ -5,7 +5,7 @@ import java.util.Scanner;
  */
 public class Jardin {
 
-    private static Plante[] plantes = new Plante[] {new Plante(), new Plante(), new Plante()};
+    private static Plante[] plantes = new Plante[] {new Plante(30), new Plante(20), new Plante(45)};
 
     /**
      * Le rapport CM/pouce.
@@ -16,10 +16,6 @@ public class Jardin {
         System.out.println("Bonjour Jardin!");
 
         Scanner scanner = new Scanner(System.in);
-
-        plantes[0].taille = 30;
-        plantes[1].taille = 20;
-        plantes[2].taille = 45;
 
         // Arroser la plante
         System.out.println("Combien de fois voulez-vous arroser la plante?");

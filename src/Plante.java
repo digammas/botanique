@@ -8,4 +8,8 @@
 public class Plante {
 
     double taille;
+
+    Plante(double t) {
+        taille = t;
+    }
 }
