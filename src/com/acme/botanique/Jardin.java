@@ -41,6 +41,7 @@ public class Jardin {
      */
     public void afficher(String unite) {
         for (Plante plante : plantes) {
+            System.out.println(plante.lireNom());
             afficher(plante.lireTaille(), unite);
         }
     }

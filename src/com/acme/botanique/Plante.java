@@ -26,4 +26,8 @@ public class Plante {
     public void arroser(int n) {
         taille += n * 0.25;
     }
+
+    public String lireNom() {
+        return "Plante inconnue";
+    }
 }
