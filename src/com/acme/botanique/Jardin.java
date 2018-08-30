@@ -1,5 +1,7 @@
 package com.acme.botanique;
 
+import com.acme.culinaire.Comestible;
+
 import java.util.Formatter;
 
 /**
@@ -30,6 +32,17 @@ public class Jardin {
         for (Plante plante : plantes) {
             plante.arroser(n);
         }
+    }
+
+    public double calculerValeurNutritionnelle() {
+        double valeur = 0.0;
+        for (Plante plante : plantes) {
+            if (plante instanceof Comestible) {
+                Comestible comestible = (Comestible) plante;
+                valeur += comestible.lireValeurNutritionnelle();
+            }
+        }
+        return valeur;
     }
 
     @Override

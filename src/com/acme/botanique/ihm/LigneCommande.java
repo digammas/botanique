@@ -43,6 +43,9 @@ public class LigneCommande {
         System.out.println("Une représentation de mon jardin:");
         System.out.println(monJardin);
 
+        double valeurNutritionnelle = monJardin.calculerValeurNutritionnelle();
+        System.out.printf("La valeur nutritionnelle totale de votre jardin est %.2f.", valeurNutritionnelle);
+
         scanner.close();
     }
 }

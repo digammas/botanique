@@ -1,9 +1,11 @@
 package com.acme.botanique;
 
+import com.acme.culinaire.Comestible;
+
 /**
  * Une plante de basilic.
  */
-public class Basilic extends Plante {
+public class Basilic extends Plante implements Comestible {
 
     /**
      * Constructeur sans argument.
@@ -29,5 +31,10 @@ public class Basilic extends Plante {
     @Override
     protected double lirePas() {
         return 0.2;
+    }
+
+    @Override
+    public double lireValeurNutritionnelle() {
+        return taille * 1.5;
     }
 }
