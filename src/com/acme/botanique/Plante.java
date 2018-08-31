@@ -31,11 +31,25 @@ public abstract class Plante {
     public String toString() {
         StringBuilder rep = new StringBuilder();
         int nbFeuille = (int) taille / 10;
+        String feuille;
+        switch (lireForme()) {
+        case ARBRE:
+        case ARBUSTE:
+            feuille = "<=";
+            break;
+        case ARBRISSEAU:
+            feuille = "{~";
+            break;
+        default:
+            feuille = "<-";
+        }
         for (int i = 0; i < nbFeuille; i++) {
-            rep.append("<-");
+            rep.append(feuille);
         }
         return rep.toString();
     }
+
+    abstract public FormePlante lireForme();
 
     public abstract String lireNom();
 

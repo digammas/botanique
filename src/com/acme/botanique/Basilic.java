@@ -37,4 +37,9 @@ public class Basilic extends Plante implements Comestible {
     public double lireValeurNutritionnelle() {
         return taille * 1.5;
     }
+
+    @Override
+    public FormePlante lireForme() {
+        return FormePlante.HERBE;
+    }
 }

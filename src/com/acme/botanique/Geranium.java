@@ -21,4 +21,9 @@ public class Geranium extends PlanteFleurie {
     protected double lirePas() {
         return 0.1;
     }
+
+    @Override
+    public FormePlante lireForme() {
+        return taille > 100 ? FormePlante.ARBRISSEAU : FormePlante.HERBE;
+    }
 }
