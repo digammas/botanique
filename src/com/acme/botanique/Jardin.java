@@ -27,8 +27,9 @@ public class Jardin {
      * Arroser toutes les plantes, n fois.
      *
      * @param n     nombre de fois d'arrosage
+     * @throws ArrosageException    lors que une erreur d'arrosage s'est produite
      */
-    public void arroser(int n) {
+    public void arroser(int n) throws ArrosageException {
         for (Plante plante : plantes) {
             plante.arroser(n);
         }

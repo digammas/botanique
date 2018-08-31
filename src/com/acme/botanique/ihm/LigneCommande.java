@@ -1,5 +1,6 @@
 package com.acme.botanique.ihm;
 
+import com.acme.botanique.ArrosageException;
 import com.acme.botanique.Jardin;
 
 import java.util.Scanner;
@@ -32,7 +33,11 @@ public class LigneCommande {
             int n = scanner.nextInt();
             scanner.nextLine();
 
-            monJardin.arroser(n);
+            try {
+                monJardin.arroser(n);
+            } catch (ArrosageException e) {
+                System.err.println(e.getMessage());
+            }
 
             System.out.println("Voulez-vous arrêter d'arroser les plantes?");
             reponse = scanner.nextLine();

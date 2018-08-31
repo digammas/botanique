@@ -33,7 +33,7 @@ public abstract class PlanteFleurie extends Plante {
     }
 
     @Override
-    public void arroser(int n) {
+    public void arroser(int n) throws ArrosageException {
         super.arroser(n);
         bouton.arroser(n);
         if (bouton.estOuverte()) {

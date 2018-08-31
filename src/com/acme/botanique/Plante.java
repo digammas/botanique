@@ -23,7 +23,10 @@ public abstract class Plante {
         return taille;
     }
 
-    public void arroser(int n) {
+    public void arroser(int n) throws ArrosageException {
+        if (n < 0) {
+            throw new ArrosageException();
+        }
         taille += n * lirePas();
     }
 
