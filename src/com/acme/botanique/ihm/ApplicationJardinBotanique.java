@@ -5,6 +5,7 @@ import com.acme.botanique.Plante;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -67,6 +68,12 @@ public class ApplicationJardinBotanique extends Application {
         }
         // Ajouter la grille à la fin de pile
         pile.getChildren().add(grille);
+        // Création d'un bouton pour quitter l'application
+        Button boutonQuitter = new Button("Quitter");
+        // Définition de l'acction du bouton : quitter l'application
+        boutonQuitter.setOnAction(event -> primaryStage.close());
+        // Ajout du bouton à la fin de pile
+        pile.getChildren().add(boutonQuitter);
         // Création et affectation de la scène
         primaryStage.setScene(new Scene(pile, 600, 300));
         // Affichage de la fenêtre
