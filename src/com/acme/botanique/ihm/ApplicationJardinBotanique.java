@@ -1,10 +1,12 @@
 package com.acme.botanique.ihm;
 
+import com.acme.botanique.ArrosageException;
 import com.acme.botanique.Jardin;
 import com.acme.botanique.Plante;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
@@ -55,7 +57,7 @@ public class ApplicationJardinBotanique extends Application {
         // Création d'une boîte de dialogue
         TextInputDialog dialogueArrosage = creerDialogueArrosage();
         // Définition de l'acction du bouton : afficher le dialogue d'arrosage
-        boutonArrosage.setOnAction(event -> dialogueArrosage.showAndWait());
+        boutonArrosage.setOnAction(event -> arroser(monJardin, dialogueArrosage));
         // Ajout du bouton à la fin de pile
         pile.getChildren().add(boutonArrosage);
         // Création d'un bouton pour quitter l'application
@@ -71,11 +73,52 @@ public class ApplicationJardinBotanique extends Application {
     }
 
     /**
+     * Essayer d'arroser le jardin en utilisant la boîte de dialogue.
+     *
+     * @param jardin    un jardin
+     * @param dialog    une boîte de dialogue
+     */
+    private void arroser(Jardin jardin, TextInputDialog dialog) {
+        // Afficher le dialogue
+        dialog.showAndWait();
+        // Obtenir le résultat
+        String resultat = dialog.getResult();
+        // Si le dialogue a été annulé, ne rien faire
+        if (resultat == null) {
+            return;
+        }
+        // Un message d'erreur
+        String erreur = null;
+        try {
+            int n = Integer.parseInt(resultat);
+            jardin.arroser(n);
+        } catch (NumberFormatException e) {
+            // Une valeur textuelle non numérique a été fournie
+            erreur = "Une valeur entier est attendue!";
+        } catch (ArrosageException e) {
+            // Une valeur négative a été fournie
+            erreur = e.getMessage();
+        }
+        if (erreur == null) {
+            // Si aucune erreur, afficher les plantes après arrosage
+            afficherPlante(jardin);
+        } else {
+            // Si une erreur s'est produite, afficher le message d'erreur
+            Alert alert = new Alert(Alert.AlertType.ERROR, erreur);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+        }
+    }
+
+    /**
      * Afficher les plantes du jardin sur la grille d'affichage.
      *
      * @param jardin    le jardin contenant des plantes
      */
     private void afficherPlante(Jardin jardin) {
+        // Supprimer toutes les lignes de la grille
+        this.grille.getChildren().clear();
         // Définir un compteur de lignes, on commence à la première ligne
         int ligne = 0;
         for (Plante plante: jardin.lirePlantes()) {
