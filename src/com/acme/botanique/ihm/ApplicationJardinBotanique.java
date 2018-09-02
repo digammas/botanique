@@ -6,7 +6,9 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -68,6 +70,20 @@ public class ApplicationJardinBotanique extends Application {
         }
         // Ajouter la grille à la fin de pile
         pile.getChildren().add(grille);
+        // Création d'un bouton d'arrosage
+        Button boutonArrosage = new Button("Arroser");
+        // Création d'une boîte de dialogue
+        TextInputDialog dialogueArrosage = new TextInputDialog();
+        // Définir le titre de la boîte
+        dialogueArrosage.setTitle("Arrosage des plante");
+        // Définir le texte du message
+        dialogueArrosage.setContentText("Quantité d'arrosage");
+        // Le dialogue n'a pas d'entête
+        dialogueArrosage.setHeaderText(null);
+        // Définition de l'acction du bouton : afficher le dialogue d'arrosage
+        boutonArrosage.setOnAction(event -> dialogueArrosage.showAndWait());
+        // Ajout du bouton à la fin de pile
+        pile.getChildren().add(boutonArrosage);
         // Création d'un bouton pour quitter l'application
         Button boutonQuitter = new Button("Quitter");
         // Définition de l'acction du bouton : quitter l'application
