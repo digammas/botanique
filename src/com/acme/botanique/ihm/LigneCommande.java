@@ -20,37 +20,39 @@ public class LigneCommande {
 
         Scanner scanner = new Scanner(System.in);
 
-        Jardin monJardin = new Jardin();
+        try {
+            Jardin monJardin = new Jardin();
 
-        String reponse;
-        do {
-            // Arroser la plante
-            System.out.println("Combien de fois voulez-vous arroser les plantes?");
-            while (!scanner.hasNextInt()) {
+            String reponse;
+            do {
+                // Arroser la plante
+                System.out.println("Combien de fois voulez-vous arroser les plantes?");
+                while (!scanner.hasNextInt()) {
+                    scanner.nextLine();
+                    System.out.println("Désolé, je n'ai pas compris. Veuillez renseigner à un chiffre entier.");
+                }
+                int n = scanner.nextInt();
                 scanner.nextLine();
-                System.out.println("Désolé, je n'ai pas compris. Veuillez renseigner à un chiffre entier.");
-            }
-            int n = scanner.nextInt();
-            scanner.nextLine();
 
-            try {
-                monJardin.arroser(n);
-            } catch (ArrosageException e) {
-                System.err.println(e.getMessage());
-            }
+                try {
+                    monJardin.arroser(n);
+                } catch (ArrosageException e) {
+                    System.err.println(e.getMessage());
+                }
 
-            System.out.println("Voulez-vous arrêter d'arroser les plantes?");
-            reponse = scanner.nextLine();
-        } while (!reponse.toLowerCase().equals("oui"));
+                System.out.println("Voulez-vous arrêter d'arroser les plantes?");
+                reponse = scanner.nextLine();
+            } while (!reponse.toLowerCase().equals("oui"));
 
-        System.out.println("Vos plantes vous remercient de les avoir arrosé.");
+            System.out.println("Vos plantes vous remercient de les avoir arrosé.");
 
-        System.out.println("Une représentation de mon jardin:");
-        System.out.println(monJardin);
+            System.out.println("Une représentation de mon jardin:");
+            System.out.println(monJardin);
 
-        double valeurNutritionnelle = monJardin.calculerValeurNutritionnelle();
-        System.out.printf("La valeur nutritionnelle totale de votre jardin est %.2f.", valeurNutritionnelle);
-
-        scanner.close();
+            double valeurNutritionnelle = monJardin.calculerValeurNutritionnelle();
+            System.out.printf("La valeur nutritionnelle totale de votre jardin est %.2f.", valeurNutritionnelle);
+        } finally {
+            scanner.close();
+        }
     }
 }
