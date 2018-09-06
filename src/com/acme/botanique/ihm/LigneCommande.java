@@ -18,9 +18,7 @@ public class LigneCommande {
     public static void main(String[] args) {
         System.out.println("Bonjour Jardin!");
 
-        Scanner scanner = new Scanner(System.in);
-
-        try {
+        try (Scanner scanner = new Scanner(System.in)) {
             Jardin monJardin = new Jardin();
 
             String reponse;
@@ -51,8 +49,6 @@ public class LigneCommande {
 
             double valeurNutritionnelle = monJardin.calculerValeurNutritionnelle();
             System.out.printf("La valeur nutritionnelle totale de votre jardin est %.2f.", valeurNutritionnelle);
-        } finally {
-            scanner.close();
         }
     }
 }

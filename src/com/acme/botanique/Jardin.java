@@ -48,10 +48,11 @@ public class Jardin {
 
     @Override
     public String toString() {
-        Formatter rep = new Formatter();
-        for (Plante plante : plantes) {
-            rep.format("%s:\t%s\n", plante.lireNom(), plante.toString());
+        try (Formatter rep = new Formatter()) {
+            for (Plante plante : plantes) {
+                rep.format("%s:\t%s\n", plante.lireNom(), plante.toString());
+            }
+            return rep.toString();
         }
-        return rep.toString();
     }
 }
