@@ -4,13 +4,18 @@ import com.acme.botanique.ArrosageException;
 import com.acme.botanique.Jardin;
 import com.acme.botanique.Plante;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -24,6 +29,11 @@ public class ApplicationJardinBotanique extends Application {
      * Une grille d'affichage.
      */
     private GridPane grille;
+
+    /**
+     * Configuration d'affichage.
+     */
+    private ConfigAffichage configAffichage = new ConfigAffichage();
 
     /**
      * Point d'entré de l'interface graphique.
@@ -52,20 +62,30 @@ public class ApplicationJardinBotanique extends Application {
         afficherPlante(monJardin);
         // Ajouter la grille à la fin de pile
         pile.getChildren().add(grille);
+        // Création d'une mise en page de type panneau horizontal
+        HBox panneau = creerPanneau();
         // Création d'un bouton d'arrosage
         Button boutonArrosage = new Button("Arroser");
         // Création d'une boîte de dialogue
         TextInputDialog dialogueArrosage = creerDialogueArrosage();
         // Définition de l'acction du bouton : afficher le dialogue d'arrosage
         boutonArrosage.setOnAction(event -> arroser(monJardin, dialogueArrosage));
-        // Ajout du bouton à la fin de pile
-        pile.getChildren().add(boutonArrosage);
+        // Ajout du bouton au panneau
+        panneau.getChildren().add(boutonArrosage);
+        // Création d'un bouton de configuration
+        Button boutonConfig = new Button("Configurer");
+        // Définition de l'acction du bouton : configurer l' affichage
+        boutonConfig.setOnAction(event -> configurer(monJardin));
+        // Ajout du bouton au panneau
+        panneau.getChildren().add(boutonConfig);
         // Création d'un bouton pour quitter l'application
         Button boutonQuitter = new Button("Quitter");
         // Définition de l'acction du bouton : quitter l'application
         boutonQuitter.setOnAction(event -> primaryStage.close());
-        // Ajout du bouton à la fin de pile
-        pile.getChildren().add(boutonQuitter);
+        // Ajout du bouton au panneau
+        panneau.getChildren().add(boutonQuitter);
+        // Ajout de panneau de bouton à la fin de pile
+        pile.getChildren().add(panneau);
         // Création et affectation de la scène
         primaryStage.setScene(new Scene(pile, 600, 300));
         // Affichage de la fenêtre
@@ -112,6 +132,23 @@ public class ApplicationJardinBotanique extends Application {
     }
 
     /**
+     * Configurer l'affichage.
+     *
+     * @param jardin            Le jardin à afficher
+     */
+    private void configurer(Jardin jardin) {
+        // Dupliquer la config, c'est nécessaire car le dialogue peut être annulé
+        ConfigAffichage nouvelleConfig = this.configAffichage.clone();
+        // Création de dialogue de configuration
+        Dialog<ButtonType> dialogueConfig = creerDialogueConfiguration(nouvelleConfig);
+        // Seulement si le bouton cliqué est OK
+        if (dialogueConfig.showAndWait().filter(ButtonType.OK::equals).isPresent()) {
+            this.configAffichage = nouvelleConfig;
+            afficherPlante(jardin);
+        }
+    }
+
+    /**
      * Afficher les plantes du jardin sur la grille d'affichage.
      *
      * @param jardin    le jardin contenant des plantes
@@ -132,6 +169,12 @@ public class ApplicationJardinBotanique extends Application {
             this.grille.add(texteNom, 0, ligne);
             // Ajout de la représentation de la plante à la deuxième colonne
             this.grille.add(textePlante, 1, ligne);
+            // S'il faut, afficher la taille
+            if (this.configAffichage.lireAfficherTaille()) {
+                // Création d'un label contenant la taille de la plante
+                Text texteTaille = new Text(String.format("%.2f", plante.lireTaille()));
+                this.grille.add(texteTaille, 2, ligne);
+            }
             // Augmentation du numéro de ligne
             ligne++;
         }
@@ -149,6 +192,20 @@ public class ApplicationJardinBotanique extends Application {
         // Définir l'espacement verticale de la pile
         pile.setSpacing(20);
         return pile;
+    }
+
+    /**
+     * Créer un panneau avec une mise en page type pile horizontale
+     *
+     * @return  un panneau d'affichage
+     */
+    private static HBox creerPanneau() {
+        HBox panneau = new HBox();
+        // Centraliser la mise en page
+        panneau.setAlignment(Pos.CENTER);
+        // Définir l'espacement verticale de la pile
+        panneau.setSpacing(20);
+        return panneau;
     }
 
     /**
@@ -184,4 +241,24 @@ public class ApplicationJardinBotanique extends Application {
         return dialogueArrosage;
     }
 
+    private static Dialog<ButtonType> creerDialogueConfiguration(ConfigAffichage config) {
+        Dialog<ButtonType> dialogue = new Dialog<>();
+        dialogue.setTitle("Configuration d'affichage");
+        dialogue.setHeaderText(null);
+        dialogue.getDialogPane().getButtonTypes().setAll(ButtonType.OK, ButtonType.CANCEL);
+        CheckBox choix = new CheckBox();
+        GridPane grille = new GridPane();
+        grille.setHgap(10);
+        grille.setVgap(10);
+        grille.setPadding(new Insets(25, 30, 10, 30));
+        // Initialiser les contrôles
+        choix.setSelected(config.lireAfficherTaille());
+        // Définir les gestionnaire
+        choix.setOnAction(event -> config.ecrireAfficherTaille(choix.isSelected()));
+        // Ajouter les contrôles
+        grille.add(choix, 0, 0);
+        grille.add(new Label("Afficher la taille des plante."), 1, 0);
+        dialogue.getDialogPane().setContent(grille);
+        return dialogue;
+    }
 }
