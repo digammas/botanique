@@ -3,6 +3,7 @@ package com.acme.botanique.ihm;
 import com.acme.botanique.ArrosageException;
 import com.acme.botanique.Jardin;
 import com.acme.botanique.Plante;
+import com.acme.outils.Mesure;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -171,8 +172,13 @@ public class ApplicationJardinBotanique extends Application {
             this.grille.add(textePlante, 1, ligne);
             // S'il faut, afficher la taille
             if (this.configAffichage.lireAfficherTaille()) {
+                // Convertir en pouce s'il faut
+                double taille = plante.lireTaille();
+                if (this.configAffichage.lireAfficherEnPouce()) {
+                    taille = Mesure.convertir(taille, Mesure.CM_A_POUCE);
+                }
                 // Création d'un label contenant la taille de la plante
-                Text texteTaille = new Text(String.format("%.2f", plante.lireTaille()));
+                Text texteTaille = new Text(String.format("%.2f", taille));
                 this.grille.add(texteTaille, 2, ligne);
             }
             // Augmentation du numéro de ligne
@@ -246,18 +252,31 @@ public class ApplicationJardinBotanique extends Application {
         dialogue.setTitle("Configuration d'affichage");
         dialogue.setHeaderText(null);
         dialogue.getDialogPane().getButtonTypes().setAll(ButtonType.OK, ButtonType.CANCEL);
-        CheckBox choix = new CheckBox();
+        CheckBox choixTaille = new CheckBox();
+        CheckBox choixUnite = new CheckBox();
+        Label labelUnite = new Label("Afficher la taille en pouce.");
         GridPane grille = new GridPane();
         grille.setHgap(10);
         grille.setVgap(10);
         grille.setPadding(new Insets(25, 30, 10, 30));
         // Initialiser les contrôles
-        choix.setSelected(config.lireAfficherTaille());
+        choixTaille.setSelected(config.lireAfficherTaille());
+        choixUnite.setDisable(!config.lireAfficherTaille());
+        choixUnite.setSelected(config.lireAfficherEnPouce());
+        labelUnite.setDisable(!config.lireAfficherTaille());
         // Définir les gestionnaire
-        choix.setOnAction(event -> config.ecrireAfficherTaille(choix.isSelected()));
+        choixTaille.setOnAction(event -> {
+            boolean afficherTaille = choixTaille.isSelected();
+            config.ecrireAfficherTaille(afficherTaille);
+            choixUnite.setDisable(!afficherTaille);
+            labelUnite.setDisable(!afficherTaille);
+        });
+        choixUnite.setOnAction(event -> config.ecrireAfficherEnPouce(choixTaille.isSelected()));
         // Ajouter les contrôles
-        grille.add(choix, 0, 0);
+        grille.add(choixTaille, 0, 0);
         grille.add(new Label("Afficher la taille des plante."), 1, 0);
+        grille.add(choixUnite, 0, 1);
+        grille.add(labelUnite, 1, 1);
         dialogue.getDialogPane().setContent(grille);
         return dialogue;
     }
