@@ -8,18 +8,14 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.text.DecimalFormat;
 
 /**
  * Interface utilisateur graphique pour le jardin botanique.
@@ -242,6 +238,8 @@ public class ApplicationJardinBotanique extends Application {
         dialogueArrosage.setTitle("Arrosage des plante");
         // Définir le texte du message
         dialogueArrosage.setContentText("Quantité d'arrosage");
+        dialogueArrosage.getEditor().setTextFormatter(new TextFormatter<String>(
+                change -> change.getControlNewText().matches("\\d+") ? change : null));
         // Le dialogue n'a pas d'entête
         dialogueArrosage.setHeaderText(null);
         return dialogueArrosage;
