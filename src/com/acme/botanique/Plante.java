@@ -11,19 +11,19 @@ public class Plante {
 
     private double taille;
 
-    Plante() {
+    public Plante() {
         this(30);
     }
 
-    Plante(double taille) {
+    public Plante(double taille) {
         this.taille = taille;
     }
 
-    double lireTaille() {
+    public double lireTaille() {
         return taille;
     }
 
-    void arroser(int n) {
+    public void arroser(int n) {
         taille += n * 0.25;
     }
 }
