@@ -1,3 +1,5 @@
+package com.acme.botanique;
+
 import java.util.Scanner;
 
 /**
